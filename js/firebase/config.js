@@ -3,7 +3,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebas
 import { getFirestore } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAwRRHRPSxH1C8_6mAk1hvSmiNISvtoPh8",
+    apiKey: process.env.FIREBASE_API_KEY,
     authDomain: "sale-pisang-malang.firebaseapp.com",
     projectId: "sale-pisang-malang",
     storageBucket: "sale-pisang-malang.appspot.com",
