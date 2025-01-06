@@ -1,0 +1,21 @@
+/* src/components/css/Sidebar.css */
+
+/* Untuk perangkat mobile, sembunyikan sidebar secara default */
+@media (max-width: 767px) {
+  .sidebar {
+    transform: translateX(-250px); /* Sidebar disembunyikan secara default */
+    transition: transform 0.3s ease-in-out; /* Animasi saat toggle */
+  }
+
+  .sidebar-open {
+    transform: translateX(0); /* Sidebar muncul saat tombol hamburger ditekan */
+  }
+}
+
+/* Untuk perangkat desktop, sidebar selalu terlihat */
+@media (min-width: 768px) {
+  .sidebar {
+    transform: translateX(0); /* Sidebar selalu terbuka pada desktop */
+    transition: none; /* Tidak perlu animasi untuk desktop */
+  }
+}
