@@ -4,8 +4,10 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Sidebar from '../components/Sidebar.jsx'; // Import Sidebar Component
-import { Button } from 'antd'; // Import Button from antd
+import Sidebar from '../components/Sidebar.jsx';
+import { Button } from 'antd';
+import { db } from '../config/firebase/FireConfig.js';
+import { doc, getDoc } from 'firebase/firestore';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -29,9 +31,24 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            await signInWithEmailAndPassword(auth, email, password);
-            toast.success('Login berhasil!');
-            setTimeout(() => navigate('/'), 2000);
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const userId = userCredential.user.uid;
+    
+            // Ambil data user dari Firestore
+            const userDoc = await getDoc(doc(db, "users", userId));
+            if (userDoc.exists()) {
+                const userData = userDoc.data();
+                toast.success('Login berhasil!');
+                setTimeout(() => {
+                    if (userData.role === "admin") {
+                        navigate('/admin-dashboard'); // Redirect ke dashboard admin
+                    } else {
+                        navigate('/client-dashboard'); // Redirect ke dashboard user
+                    }
+                }, 2000);
+            } else {
+                toast.error('User data not found!');
+            }
         } catch (error) {
             toast.error('Error logging in: ' + error.message);
         }

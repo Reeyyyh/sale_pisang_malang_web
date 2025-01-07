@@ -6,6 +6,9 @@ import Login from './Auth/Login';
 import Dashboard from './components/Dashboard';
 import ProductDetail from './components/ProductDetail';
 
+import ClientDashboard from './Client/page/ClientDashboard';
+import AdminDashboard from './Admin/page/AdminDashboard';
+
 const App = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false); // Sidebar tertutup default pada mobile
   const [isMobile, setIsMobile] = useState(false); // Status untuk mengecek apakah perangkat mobile
@@ -54,6 +57,8 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/client-dashboard" element={<ClientDashboard />} />
+            <Route path="/admin-dashboard" element={<AdminDashboard />} />
           </Routes>
         </div>
       </div>
