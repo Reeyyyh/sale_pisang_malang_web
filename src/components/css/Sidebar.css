@@ -87,7 +87,7 @@
 }
 
 /* Menyembunyikan sidebar pada perangkat mobile */
-@media (max-width: 991px) {
+@media (max-width: 550px) {
   .sidebar {
     transform: translateX(-100%); /* Sidebar tersembunyi secara default */
   }

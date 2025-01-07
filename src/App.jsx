@@ -9,9 +9,10 @@ import ProductDetail from './components/ProductDetail';
 const App = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false); // Sidebar tertutup default pada mobile
   const [isMobile, setIsMobile] = useState(false); // Status untuk mengecek apakah perangkat mobile
+  const [isDashboard, setIsDashboard] = useState(false); // Status untuk menampilkan tombol hamburger
 
   const handleResize = () => {
-    const mobileView = window.innerWidth <= 991;
+    const mobileView = window.innerWidth <= 550;
     setIsMobile(mobileView); // Tentukan batas lebar layar untuk mobile
 
     if (!mobileView) {
@@ -49,7 +50,7 @@ const App = () => {
           }}
         >
           <Routes>
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/" element={<Dashboard setIsDashboard={setIsDashboard} />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/product/:id" element={<ProductDetail />} />

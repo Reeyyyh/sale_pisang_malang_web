@@ -5,10 +5,30 @@ import { Card, Col, Row, Spin, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import Sidebar from './Sidebar'; // Import Sidebar Component
 
-const Dashboard = () => {
+const Dashboard = ({ setIsDashboard }) => {
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State untuk kontrol sidebar
+    const [isMobile, setIsMobile] = useState(false); // State untuk mengecek apakah perangkat mobile
+
+    // Mengatur tampilan berdasarkan lebar layar
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 550); // Jika lebar layar <= 991px, anggap perangkat mobile
+        };
+
+        handleResize(); // Panggil untuk pertama kali
+        window.addEventListener('resize', handleResize); // Setiap kali ukuran layar berubah
+
+        return () => window.removeEventListener('resize', handleResize); // Hapus event listener saat komponen unmount
+    }, []);
+
+    useEffect(() => {
+        setIsDashboard(true); // Set status sidebar hanya untuk halaman dashboard
+        return () => {
+            setIsDashboard(false); // Set status false ketika meninggalkan dashboard
+        };
+    }, [setIsDashboard]);
 
     useEffect(() => {
         const fetchItems = async () => {
@@ -39,12 +59,40 @@ const Dashboard = () => {
             {/* Menampilkan Sidebar */}
             <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
 
-            <h2 className="text-center mb-4">Welcome to Sale Pisang Malang</h2>
+            <h2 className="text-center mb-4 bg-primary rounded text-light p-1">
+                Welcome to Sale Pisang Malang
+            </h2>
 
-            {/* Tombol Hamburger untuk mobile */}
-            <div className="hamburger-btn" onClick={toggleSidebar}>
-                <Button icon={isSidebarOpen ? 'close' : 'menu'} shape="circle" />
-            </div>
+            {/* Tombol Hamburger hanya tampil jika perangkat mobile */}
+            {isMobile && (
+                <div
+                    onClick={toggleSidebar}
+                    style={{
+                        position: 'fixed',
+                        top: '20px',
+                        right: '20px', // Pindahkan tombol ke kanan
+                        zIndex: 1000,  // Pastikan tombol di atas elemen lainnya
+                    }}
+                >
+                    <Button
+                        className="btn btn-lg"
+                        style={{
+                            padding: '20px',
+                            backgroundColor: 'transparent',
+                            border: '1px solid transparent',  // Atur border agar tidak berubah saat hover
+                        }}
+                        onMouseEnter={(e) => e.preventDefault()} // Menghentikan perubahan saat hover
+                        onMouseLeave={(e) => e.preventDefault()} // Menghentikan perubahan saat hover berakhir
+                    >
+                        {/* Ikon Hamburger (tampilan menu) */}
+                        {isSidebarOpen ? (
+                            <i className="fas fa-times" style={{ fontSize: '30px', color: 'black' }}></i>
+                        ) : (
+                            <i className="fas fa-bars" style={{ fontSize: '30px', color: 'black' }}></i>
+                        )}
+                    </Button>
+                </div>
+            )}
 
             {loading ? (
                 <div className="text-center">
