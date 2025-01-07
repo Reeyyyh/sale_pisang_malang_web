@@ -8,20 +8,23 @@
   background-color: #212529;
   color: white;
   padding-top: 20px;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease; /* Menggabungkan transisi */
   box-shadow: 4px 0 12px rgba(0,0,0,0.1); /* Shadow untuk kedalaman */
   border-radius: 10px 0 0 10px; /* Rounded corner */
+  z-index: 9999; /* Pastikan sidebar di atas elemen lain */
 }
 
+/* Sidebar tertutup */
 .sidebar.closed {
   transform: translateX(-100%); /* Menyembunyikan sidebar */
 }
 
+/* Sidebar terbuka */
 .sidebar.open {
   transform: translateX(0); /* Menampilkan sidebar */
 }
 
-/* Styling untuk tombol hamburger di mobile */
+/* Tombol hamburger untuk tampilan mobile */
 .sidebar .btn {
   position: absolute;
   top: 20px;
@@ -30,10 +33,7 @@
   border: none;
   font-size: 24px;
   color: white;
-}
-
-.sidebar .navbar-collapse {
-  transition: transform 0.3s ease;
+  z-index: 10000; /* Pastikan tombol hamburger di atas sidebar */
 }
 
 /* Styling untuk item di menu */
@@ -79,4 +79,20 @@
 .active-menu-item {
   background-color: #0056b3 !important;
   transform: scale(1.05);
+}
+
+/* Styling untuk item di menu */
+.menu-item, .submenu-item {
+  z-index: 1001; /* Pastikan item di menu tetap dapat diklik */
+}
+
+/* Menyembunyikan sidebar pada perangkat mobile */
+@media (max-width: 991px) {
+  .sidebar {
+    transform: translateX(-100%); /* Sidebar tersembunyi secara default */
+  }
+
+  .sidebar.open {
+    transform: translateX(0); /* Sidebar tampil saat 'open' */
+  }
 }
