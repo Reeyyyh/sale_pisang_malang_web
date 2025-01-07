@@ -31,21 +31,29 @@ const ProductDetail = () => {
         <div className="container py-5">
             {product ? (
                 <div className="row">
+                    {/* Gambar produk */}
                     <div className="col-12 col-md-6">
-                        <div className="card shadow-lg">
-                            <img 
-                                src={product.imgUrl} 
-                                alt={product.name} 
-                                className="card-img-top img-fluid" 
-                                style={{ objectFit: 'cover', maxHeight: '400px' }} 
+                        <div className="card shadow-lg" style={{ borderRadius: '15px', overflow: 'hidden', backgroundColor: 'transparent' }}>
+                            <img
+                                src={product.imgUrl}
+                                alt={product.name}
+                                className="card-img-top img-fluid"
+                                style={{
+                                    objectFit: 'contain',
+                                    maxHeight: '400px',
+                                    width: '100%',
+                                    borderRadius: '15px 15px 0 0'
+                                }}
                             />
                         </div>
                     </div>
+
+                    {/* Deskripsi dan tombol */}
                     <div className="col-12 col-md-6 mt-4 mt-md-0">
                         <div className="card p-4 shadow-sm border-light rounded">
                             <h3 className="mb-3">{product.name}</h3>
                             <p className="text-muted">{product.harga}</p>
-                            <p className="text-muted">{product.description}</p>
+                            <p className="text-muted" style={{ textAlign: 'justify' }}>{product.description}</p>
                             <button className="btn btn-primary w-100 py-3 mt-4 hover-shadow">
                                 Add to Cart
                             </button>

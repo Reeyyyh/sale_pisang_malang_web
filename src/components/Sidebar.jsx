@@ -1,65 +1,74 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
-import './css/Sidebar.css';
+import './css/sidebar.css'; // Impor file CSS custom
 
-const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
+const MySidebar = ({ isSidebarOpen }) => {
     return (
-        <div>
-            {/* Button hamburger untuk mobile */}
-            <button
-                className="navbar-toggler d-lg-none"
-                type="button"
-                onClick={toggleSidebar}
-                aria-expanded={isSidebarOpen}
-            >
-                <span className="navbar-toggler-icon"></span>
-            </button>
-
-            {/* Sidebar */}
-            <div
-                className={`d-flex flex-column p-3 bg-dark text-white sidebar ${isSidebarOpen ? 'sidebar-open' : ''}`}
-                style={{
-                    position: 'fixed',
-                    top: 0,
-                    left: 0,
-                    width: '250px',
-                    height: '100vh',
-                    overflowY: 'auto',
-                    zIndex: '1000',
-                    transition: 'transform 0.3s ease-in-out',
-                    transform: isSidebarOpen ? 'translateX(0)' : 'translateX(-250px)',
-                }}
-            >
-                <h4 className="text-center mb-4">Welcome</h4>
-                <div className="list-group">
-                    <NavLink
-                        to="/"
-                        className={({ isActive }) =>
-                            `list-group-item list-group-item-action bg-transparent border-0 text-white hover-bg-primary ${isActive ? 'bg-primary' : ''}`
-                        }
-                    >
-                        Dashboard
-                    </NavLink>
-                    <NavLink
-                        to="/login"
-                        className={({ isActive }) =>
-                            `list-group-item list-group-item-action bg-transparent border-0 text-white hover-bg-primary ${isActive ? 'bg-primary' : ''}`
-                        }
-                    >
-                        Login
-                    </NavLink>
-                    <NavLink
-                        to="/register"
-                        className={({ isActive }) =>
-                            `list-group-item list-group-item-action bg-transparent border-0 text-white hover-bg-primary ${isActive ? 'bg-primary' : ''}`
-                        }
-                    >
-                        Register
-                    </NavLink>
-                </div>
+        <div className={`sidebar ${isSidebarOpen ? 'open' : 'closed'}`} style={{ height: '100vh' }}>
+            {/* Welcome Text */}
+            <div className="welcome-text text-center my-4">
+                <h3>Welcome</h3>
             </div>
+
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark flex-column" style={{ height: '100vh' }}>
+                <div className="container-fluid">
+                    <div className="collapse navbar-collapse" id="navbarScroll">
+                        <ul className="navbar-nav flex-column w-100">
+                            {/* Dashboard Menu Item */}
+                            <li className="nav-item">
+                                <NavLink
+                                    to="/"
+                                    className={({ isActive }) => isActive ? "nav-link active-menu-item" : "nav-link"}
+                                >
+                                    Dashboard
+                                </NavLink>
+                            </li>
+
+                            {/* Login Menu Item */}
+                            <li className="nav-item">
+                                <NavLink
+                                    to="/login"
+                                    className={({ isActive }) => isActive ? "nav-link active-menu-item" : "nav-link"}
+                                >
+                                    Login
+                                </NavLink>
+                            </li>
+
+                            {/* Register Menu Item */}
+                            <li className="nav-item">
+                                <NavLink
+                                    to="/register"
+                                    className={({ isActive }) => isActive ? "nav-link active-menu-item" : "nav-link"}
+                                >
+                                    Register
+                                </NavLink>
+                            </li>
+
+                            {/* SubMenu for Social Media */}
+                            <li className="nav-item dropdown">
+                                <a
+                                    className="nav-link dropdown-toggle"
+                                    href="#"
+                                    id="social-media-dropdown"
+                                    role="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                >
+                                    Our Social Media
+                                </a>
+                                <ul className="dropdown-menu" aria-labelledby="social-media-dropdown">
+                                    <li><a className="dropdown-item" href="#">Instagram</a></li>
+                                    <li><a className="dropdown-item" href="#">Shopee</a></li>
+                                    <li><a className="dropdown-item" href="#">TokoPedia</a></li>
+                                    <li><a className="dropdown-item" href="#">TikTok</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         </div>
     );
 };
 
-export default Sidebar;
+export default MySidebar;

@@ -1,21 +1,74 @@
-/* src/components/css/Sidebar.css */
-
-/* Untuk perangkat mobile, sembunyikan sidebar secara default */
-@media (max-width: 767px) {
-  .sidebar {
-    transform: translateX(-250px); /* Sidebar disembunyikan secara default */
-    transition: transform 0.3s ease-in-out; /* Animasi saat toggle */
-  }
-
-  .sidebar-open {
-    transform: translateX(0); /* Sidebar muncul saat tombol hamburger ditekan */
-  }
+/* Styling untuk Sidebar */
+.sidebar {
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  background-color: #212529;
+  color: white;
+  padding-top: 20px;
+  transition: transform 0.3s ease;
+  box-shadow: 4px 0 12px rgba(0,0,0,0.1); /* Shadow untuk kedalaman */
+  border-radius: 10px 0 0 10px; /* Rounded corner */
 }
 
-/* Untuk perangkat desktop, sidebar selalu terlihat */
-@media (min-width: 768px) {
-  .sidebar {
-    transform: translateX(0); /* Sidebar selalu terbuka pada desktop */
-    transition: none; /* Tidak perlu animasi untuk desktop */
-  }
+/* Styling untuk welcome text */
+.welcome-text {
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 10px 20px;
+  text-align: center;
+  border-bottom: 1px solid #444;
+}
+
+/* Styling untuk item di menu */
+.menu-item {
+  background-color: #007bff;
+  color: #ffffff;
+  border-radius: 8px;
+  margin: 10px 0;
+  font-weight: bold;
+  padding: 15px 20px; /* Menambah padding untuk tampilan lebih luas */
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Transisi yang lebih halus */
+}
+
+.menu-item:hover {
+  background-color: #0056b3;
+  transform: scale(1.05); /* Efek scale pada hover */
+}
+
+/* Styling untuk submenu */
+.submenu {
+  background-color: #343a40;
+  border-radius: 8px;
+  margin: 10px 0;
+  padding: 10px 15px;
+}
+
+/* Styling untuk item submenu */
+.submenu-item {
+  color: white;
+  padding: 12px 15px; /* Padding lebih lebar untuk submenu */
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Transisi pada submenu */
+}
+
+.submenu-item:hover {
+  background-color: #495057;
+  transform: scale(1.05); /* Efek scale pada hover submenu */
+}
+
+/* Styling untuk menu item yang aktif */
+.active-menu-item {
+  background-color: #0056b3 !important;
+  transform: scale(1.05);
+}
+
+/* Styling untuk navbar background */
+.sidebar .pro-sidebar-inner {
+  background-color: #212529 !important;
 }
