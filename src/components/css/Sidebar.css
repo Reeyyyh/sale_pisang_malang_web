@@ -77,8 +77,11 @@
 
 /* Styling untuk menu item yang aktif */
 .active-menu-item {
-  background-color: #0056b3 !important;
+  background-color: #ffc107 !important;
   transform: scale(1.05);
+  font-weight: bold;
+  color: white;
+  border-radius: 5px;
 }
 
 /* Styling untuk item di menu */

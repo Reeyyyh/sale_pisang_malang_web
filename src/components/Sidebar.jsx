@@ -60,7 +60,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                                         data-bs-toggle="dropdown"
                                         aria-expanded="false"
                                     >
-                                        Our Social Media
+                                        our social media
                                     </a>
                                     <ul className="dropdown-menu" aria-labelledby="social-media-dropdown">
                                         <li>
