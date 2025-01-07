@@ -13,14 +13,27 @@
   border-radius: 10px 0 0 10px; /* Rounded corner */
 }
 
-/* Styling untuk welcome text */
-.welcome-text {
-  font-size: 20px;
-  color: #ffffff;
-  font-weight: bold;
-  padding: 10px 20px;
-  text-align: center;
-  border-bottom: 1px solid #444;
+.sidebar.closed {
+  transform: translateX(-100%); /* Menyembunyikan sidebar */
+}
+
+.sidebar.open {
+  transform: translateX(0); /* Menampilkan sidebar */
+}
+
+/* Styling untuk tombol hamburger di mobile */
+.sidebar .btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  color: white;
+}
+
+.sidebar .navbar-collapse {
+  transition: transform 0.3s ease;
 }
 
 /* Styling untuk item di menu */
@@ -30,15 +43,15 @@
   border-radius: 8px;
   margin: 10px 0;
   font-weight: bold;
-  padding: 15px 20px; /* Menambah padding untuk tampilan lebih luas */
+  padding: 15px 20px;
   text-decoration: none;
   display: block;
-  transition: background-color 0.3s ease, transform 0.3s ease; /* Transisi yang lebih halus */
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .menu-item:hover {
   background-color: #0056b3;
-  transform: scale(1.05); /* Efek scale pada hover */
+  transform: scale(1.05);
 }
 
 /* Styling untuk submenu */
@@ -52,23 +65,18 @@
 /* Styling untuk item submenu */
 .submenu-item {
   color: white;
-  padding: 12px 15px; /* Padding lebih lebar untuk submenu */
+  padding: 12px 15px;
   text-decoration: none;
-  transition: background-color 0.3s ease, transform 0.3s ease; /* Transisi pada submenu */
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .submenu-item:hover {
   background-color: #495057;
-  transform: scale(1.05); /* Efek scale pada hover submenu */
+  transform: scale(1.05);
 }
 
 /* Styling untuk menu item yang aktif */
 .active-menu-item {
   background-color: #0056b3 !important;
   transform: scale(1.05);
-}
-
-/* Styling untuk navbar background */
-.sidebar .pro-sidebar-inner {
-  background-color: #212529 !important;
 }
