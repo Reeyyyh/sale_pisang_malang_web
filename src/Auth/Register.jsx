@@ -17,10 +17,11 @@ const Register = () => {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
 
-            // Menyimpan data user ke Firestore, termasuk role (admin/user)
             await setDoc(doc(db, 'users', user.uid), {
-                name: name,  // Menambahkan nama pengguna
-                role: 'user',  // Atur role sesuai kebutuhan
+                id: user.uid,
+                email: email,
+                name: name,
+                role: 'user',
             });
 
             navigate('/login');  // Redirect ke halaman login setelah registrasi berhasil

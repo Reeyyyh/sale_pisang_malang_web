@@ -1,8 +1,9 @@
-// src/Auth/Login.jsx
 import React, { useState } from 'react';
 import { auth } from '../config/firebase/FireConfig.js';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -13,9 +14,10 @@ const Login = () => {
         e.preventDefault();
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            navigate('/');  // Redirect ke dashboard setelah login sukses
+            toast.success('Login berhasil!');
+            setTimeout(() => navigate('/'), 2000);
         } catch (error) {
-            alert('Error logging in: ' + error.message);
+            toast.error('Error logging in: ' + error.message);
         }
     };
 
@@ -52,6 +54,8 @@ const Login = () => {
                     <p>Don't have an account? <a href="/register">Register</a></p>
                 </div>
             </div>
+            {/* ToastContainer dengan posisi tengah atas */}
+            <ToastContainer position="top-center" autoClose={3000} />
         </div>
     );
 };
