@@ -3,8 +3,10 @@ import { auth, db } from '../config/firebase/FireConfig.js';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { setDoc, doc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
-import Sidebar from '../components/Sidebar.jsx'; // Import Sidebar Component
-import { Button } from 'antd'; // Import Button from antd
+import Sidebar from '../components/Sidebar.jsx';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Button } from 'antd';
 
 const Register = () => {
     const [name, setName] = useState('');
@@ -38,10 +40,10 @@ const Register = () => {
                 name: name,
                 role: 'user',
             });
-
-            navigate('/login');  // Redirect ke halaman login setelah registrasi berhasil
+            toast.success('Register berhasil!');
+            setTimeout(() => navigate('/login'), 2000);
         } catch (error) {
-            alert('Error registering: ' + error.message);
+            toast.error('Error registering: ' + error.message);
         }
     };
 
@@ -128,6 +130,8 @@ const Register = () => {
                     <p>Already have an account? <a href="/login">Login</a></p>
                 </div>
             </div>
+            {/* ToastContainer dengan posisi tengah atas */}
+            <ToastContainer position="top-center" autoClose={3000} />
         </div>
     );
 };

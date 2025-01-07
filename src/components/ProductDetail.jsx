@@ -52,11 +52,9 @@ const ProductDetail = () => {
                     <div className="col-12 col-md-6 mt-4 mt-md-0">
                         <div className="card p-4 shadow-sm border-light rounded">
                             <h3 className="mb-3">{product.name}</h3>
-                            <p className="text-muted">{product.harga}</p>
+                            <p className="text-success">{product.harga}</p>
+                            <hr />
                             <p className="text-muted" style={{ textAlign: 'justify' }}>{product.description}</p>
-                            <button className="btn btn-warning text-white fw-bold w-100 py-3 mt-4 hover-shadow">
-                                Add to Cart
-                            </button>
                         </div>
                     </div>
                 </div>
